@@ -129,7 +129,7 @@ class RemoveWwwMiddlewareTestCase(TestCase):
         self.assertEqual(r.status_code, 200)
 
     @override_settings(REMOVE_WWW=True)
-    def test_response_wwwexamplecom(self):
+    def test_response_of_wwwexamplecom(self):
         """
         Assert response is instance of HttpResponse and status code 301
         """
