@@ -22,6 +22,8 @@ After `creating a project <https://docs.djangoproject.com/en/1.10/intro/tutorial
 
    REMOVE_WWW = True
 
+Adding to ``INSTALLED_APPS`` is unnecessary unless you want to run the tests.
+
 The middleware is compatible with `pre-Django 1.10-style middleware <https://docs.djangoproject.com/en/1.10/topics/http/middleware/#upgrading-pre-django-1-10-style-middleware>`_ because it inherits from ``django.utils.deprecation.MiddlewareMixin``.
 
 Remember to update your ``requirements.txt`` file. In your project directory:
