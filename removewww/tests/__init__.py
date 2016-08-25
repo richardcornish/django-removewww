@@ -96,7 +96,7 @@ class RemoveWwwMiddlewareTestCase(TestCase):
         host = 'www.example.com'
         path = '/admin/login/'
         params = {'next': 'admin'}
-        request = self.get_path(host=host, path=path, params=params)
+        request = self.get_path(secure=secure, host=host, path=path, params=params)
         r = RemoveWwwMiddleware().process_request(request)
         self.assertEqual(r.url, 'http://example.com/admin/login/?next=admin')
 
@@ -131,7 +131,7 @@ class RemoveWwwMiddlewareTestCase(TestCase):
     @override_settings(REMOVE_WWW=True)
     def test_response_wwwexamplecom(self):
         """
-        Assert response is instance of HttpResponse and status code 200
+        Assert response is instance of HttpResponse and status code 301
         """
         host = 'www.example.com'
         path = '/admin/login/'
