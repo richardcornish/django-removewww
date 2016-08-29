@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponsePermanentRedirect
-from django.test import TestCase, RequestFactory, override_settings
+from django.http import HttpResponse, HttpResponsePermanentRedirect
+from django.test import RequestFactory, TestCase, override_settings
 
 from ..middleware import RemoveWwwMiddleware
 

@@ -15,15 +15,13 @@ class RemoveWwwMiddleware(MiddlewareMixin):
     checks the ``REMOVE_WWW`` setting and the beginning of the
     URL path. If has www, redirects without www and full path
     """
-
     def process_request(self, request):
-
         if settings.PREPEND_WWW is True:
             return None
         else:
-            REMOVE_WWW = getattr(settings, 'REMOVE_WWW', False)
+            remove_www = getattr(settings, 'REMOVE_WWW', False)
             host = request.get_host()
-            if REMOVE_WWW and host and host.startswith('www.'):
+            if remove_www and host and host.startswith('www.'):
                 redirect_url = request.build_absolute_uri().replace('//www.', '//')
                 return HttpResponsePermanentRedirect(redirect_url)
 
