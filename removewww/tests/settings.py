@@ -26,3 +26,5 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
     }
 ]
+
+ALLOWED_HOSTS = ['.example.com']
