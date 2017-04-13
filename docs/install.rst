@@ -26,6 +26,15 @@ Adding to ``INSTALLED_APPS`` is unnecessary unless you want to run the tests.
 
 The middleware is compatible with `pre-Django 1.10-style middleware <https://docs.djangoproject.com/en/1.10/topics/http/middleware/#upgrading-pre-django-1-10-style-middleware>`_ because it inherits from ``django.utils.deprecation.MiddlewareMixin``.
 
+.. code-block:: python
+
+   MIDDLEWARE_CLASSES = (
+       # ...
+       'removewww.middleware.RemoveWwwMiddleware',
+   )
+
+   REMOVE_WWW = True
+
 Remember to update your ``requirements.txt`` file. In your project directory:
 
 .. code-block:: bash
