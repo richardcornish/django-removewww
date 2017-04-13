@@ -11,7 +11,7 @@ class RemoveWwwMiddlewareTestCase(TestCase):
     def setUp(self):
         self.rf = RequestFactory()
 
-    def get_path(self, secure=False, host='', path='', params={}):
+    def get_request(self, secure=False, host='', path='', params={}):
         return self.rf.get(path, params, secure=secure, SERVER_NAME=host)
 
     @override_settings(PREPEND_WWW=True)
@@ -22,7 +22,7 @@ class RemoveWwwMiddlewareTestCase(TestCase):
         host = 'example.com'
         path = '/admin/login/'
         params = {'next': 'admin'}
-        request = self.get_path(host=host, path=path, params=params)
+        request = self.get_request(host=host, path=path, params=params)
         r = RemoveWwwMiddleware().process_request(request)
         self.assertIsNone(r)
 
@@ -34,7 +34,7 @@ class RemoveWwwMiddlewareTestCase(TestCase):
         host = 'example.com'
         path = '/admin/login/'
         params = {'next': 'admin'}
-        request = self.get_path(host=host, path=path, params=params)
+        request = self.get_request(host=host, path=path, params=params)
         r = RemoveWwwMiddleware().process_request(request)
         self.assertIsNone(r)
 
@@ -46,7 +46,7 @@ class RemoveWwwMiddlewareTestCase(TestCase):
         host = 'example.com'
         path = '/admin/login/'
         params = {'next': 'admin'}
-        request = self.get_path(host=host, path=path, params=params)
+        request = self.get_request(host=host, path=path, params=params)
         r = RemoveWwwMiddleware().process_request(request)
         self.assertIsNone(r)
 
@@ -58,7 +58,7 @@ class RemoveWwwMiddlewareTestCase(TestCase):
         host = 'www.example.com'
         path = '/admin/login/'
         params = {'next': 'admin'}
-        request = self.get_path(host=host, path=path, params=params)
+        request = self.get_request(host=host, path=path, params=params)
         r = RemoveWwwMiddleware().process_request(request)
         self.assertIsNone(r)
 
@@ -70,7 +70,7 @@ class RemoveWwwMiddlewareTestCase(TestCase):
         host = 'www.example.com'
         path = '/admin/login/'
         params = {'next': 'admin'}
-        request = self.get_path(host=host, path=path, params=params)
+        request = self.get_request(host=host, path=path, params=params)
         r = RemoveWwwMiddleware().process_request(request)
         self.assertEqual(r.url, 'http://example.com/admin/login/?next=admin')
 
@@ -82,7 +82,7 @@ class RemoveWwwMiddlewareTestCase(TestCase):
         host = 'www.example.com'
         path = '/admin/login/'
         params = {'next': 'admin'}
-        request = self.get_path(host=host, path=path, params=params)
+        request = self.get_request(host=host, path=path, params=params)
         r = RemoveWwwMiddleware().process_request(request)
         self.assertIsNone(r)
 
@@ -96,7 +96,7 @@ class RemoveWwwMiddlewareTestCase(TestCase):
         host = 'www.example.com'
         path = '/admin/login/'
         params = {'next': 'admin'}
-        request = self.get_path(secure=secure, host=host, path=path, params=params)
+        request = self.get_request(secure=secure, host=host, path=path, params=params)
         r = RemoveWwwMiddleware().process_request(request)
         self.assertEqual(r.url, 'http://example.com/admin/login/?next=admin')
 
@@ -110,7 +110,7 @@ class RemoveWwwMiddlewareTestCase(TestCase):
         host = 'www.example.com'
         path = '/admin/login/'
         params = {'next': 'admin'}
-        request = self.get_path(secure=secure, host=host, path=path, params=params)
+        request = self.get_request(secure=secure, host=host, path=path, params=params)
         r = RemoveWwwMiddleware().process_request(request)
         self.assertEqual(r.url, 'https://example.com/admin/login/?next=admin')
 
@@ -122,7 +122,7 @@ class RemoveWwwMiddlewareTestCase(TestCase):
         host = 'example.com'
         path = '/admin/login/'
         params = {'next': 'admin'}
-        request = self.get_path(host=host)
+        request = self.get_request(host=host)
         response = HttpResponse("Here's the text of the Web page.")
         r = RemoveWwwMiddleware().process_response(request, response)
         self.assertEqual(r, response)
@@ -136,7 +136,7 @@ class RemoveWwwMiddlewareTestCase(TestCase):
         host = 'www.example.com'
         path = '/admin/login/'
         params = {'next': 'admin'}
-        request = self.get_path(host=host, path=path, params=params)
+        request = self.get_request(host=host, path=path, params=params)
         response = HttpResponsePermanentRedirect
         r = RemoveWwwMiddleware().process_response(request, response)
         self.assertEqual(r, response)
