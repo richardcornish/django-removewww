@@ -16,9 +16,7 @@ class RemoveWwwMiddlewareTestCase(TestCase):
 
     @override_settings(PREPEND_WWW=True)
     def test_request_url_of_prepend_examplecom(self):
-        """
-        Return None if PREPEND_WWW is True
-        """
+        """Return None if PREPEND_WWW is True."""
         host = 'example.com'
         path = '/admin/login/'
         params = {'next': 'admin'}
@@ -28,9 +26,7 @@ class RemoveWwwMiddlewareTestCase(TestCase):
 
     @override_settings(REMOVE_WWW=True)
     def test_request_url_of_remove_examplecom(self):
-        """
-        Return None if host has no ``www``
-        """
+        """Return None if host has no www."""
         host = 'example.com'
         path = '/admin/login/'
         params = {'next': 'admin'}
@@ -40,9 +36,7 @@ class RemoveWwwMiddlewareTestCase(TestCase):
 
     @override_settings(PREPEND_WWW=True, REMOVE_WWW=True)
     def test_request_url_of_prepend_remove_examplecom(self):
-        """
-        Return None if PREPEND_WWW is True and REMOVE_WWW is True
-        """
+        """Return None if PREPEND_WWW is True and REMOVE_WWW is True."""
         host = 'example.com'
         path = '/admin/login/'
         params = {'next': 'admin'}
@@ -52,9 +46,7 @@ class RemoveWwwMiddlewareTestCase(TestCase):
 
     @override_settings(PREPEND_WWW=True)
     def test_request_url_of_prepend_wwwexamplecom(self):
-        """
-        Return None if PREPEND_WWW is True
-        """
+        """Return None if PREPEND_WWW is True."""
         host = 'www.example.com'
         path = '/admin/login/'
         params = {'next': 'admin'}
@@ -64,9 +56,7 @@ class RemoveWwwMiddlewareTestCase(TestCase):
 
     @override_settings(REMOVE_WWW=True)
     def test_request_url_of_remove_wwwexamplecom(self):
-        """
-        Return new URL if REMOVE_WWW is True and host has ``www``
-        """
+        """Return new URL if REMOVE_WWW is True and host has www."""
         host = 'www.example.com'
         path = '/admin/login/'
         params = {'next': 'admin'}
@@ -76,9 +66,7 @@ class RemoveWwwMiddlewareTestCase(TestCase):
 
     @override_settings(PREPEND_WWW=True, REMOVE_WWW=True)
     def test_request_url_of_prepend_remove_wwwexamplecom(self):
-        """
-        Return None if PREPEND_WWW is True and REMOVE_WWW is True
-        """
+        """Return None if PREPEND_WWW is True and REMOVE_WWW is True."""
         host = 'www.example.com'
         path = '/admin/login/'
         params = {'next': 'admin'}
@@ -88,10 +76,7 @@ class RemoveWwwMiddlewareTestCase(TestCase):
 
     @override_settings(REMOVE_WWW=True)
     def test_request_url_of_remove_httpwwwexamplecom(self):
-        """
-        Return new URL if REMOVE_WWW is True and host has ``www``,
-        despite ``http://`` or ``https://``
-        """
+        """Return new URL if REMOVE_WWW is True and host has www, despite http:// or https://."""
         secure = False
         host = 'www.example.com'
         path = '/admin/login/'
@@ -102,10 +87,7 @@ class RemoveWwwMiddlewareTestCase(TestCase):
 
     @override_settings(REMOVE_WWW=True)
     def test_request_url_of_remove_httpswwwexamplecom(self):
-        """
-        Assert new URL if REMOVE_WWW is True and host has ``www``,
-        despite ``http://`` or ``https://``
-        """
+        """Assert new URL if REMOVE_WWW is True and host has www, despite http:// or https://."""
         secure = True
         host = 'www.example.com'
         path = '/admin/login/'
@@ -116,9 +98,7 @@ class RemoveWwwMiddlewareTestCase(TestCase):
 
     @override_settings(REMOVE_WWW=True)
     def test_response_of_examplecom(self):
-        """
-        Assert response is instance of HttpResponse and status code 200
-        """
+        """Assert response is instance of HttpResponse and status code 200."""
         host = 'example.com'
         path = '/admin/login/'
         params = {'next': 'admin'}
@@ -130,9 +110,7 @@ class RemoveWwwMiddlewareTestCase(TestCase):
 
     @override_settings(REMOVE_WWW=True)
     def test_response_of_wwwexamplecom(self):
-        """
-        Assert response is instance of HttpResponse and status code 301
-        """
+        """Assert response is instance of HttpResponse and status code 301."""
         host = 'www.example.com'
         path = '/admin/login/'
         params = {'next': 'admin'}
