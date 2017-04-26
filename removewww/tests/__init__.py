@@ -100,8 +100,6 @@ class RemoveWwwMiddlewareTestCase(TestCase):
     def test_response_of_examplecom(self):
         """Assert response is instance of HttpResponse and status code 200."""
         host = 'example.com'
-        path = '/admin/login/'
-        params = {'next': 'admin'}
         request = self.get_request(host=host)
         response = HttpResponse("Here's the text of the Web page.")
         r = RemoveWwwMiddleware().process_response(request, response)
