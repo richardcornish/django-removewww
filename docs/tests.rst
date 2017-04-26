@@ -10,7 +10,7 @@ However, you can also test the source code.
 .. code-block:: bash
 
    $ workon myvenv
-   $ django-admin.py test removewww.tests --settings="removewww.tests.settings"
+   $ django-admin test removewww.tests --settings="removewww.tests.settings"
    
    Creating test database for alias 'default'...
    ..........
