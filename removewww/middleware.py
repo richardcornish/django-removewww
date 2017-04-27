@@ -5,7 +5,7 @@ from django.http import HttpResponsePermanentRedirect
 
 try:
     from django.utils.deprecation import MiddlewareMixin
-except ImportError:
+except ImportError:  # < Django 1.10
     MiddlewareMixin = object
 
 
