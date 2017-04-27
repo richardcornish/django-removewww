@@ -10,11 +10,13 @@ except ImportError:
 
 
 class RemoveWwwMiddleware(MiddlewareMixin):
-    """
+    """Middleware that redirects ``www`` subdomains to root.
+
     Middleware that inspects the request's host and path and
     checks the ``REMOVE_WWW`` setting and the beginning of the
     URL path. If has www, redirects without www and full path
     """
+
     def process_request(self, request):
         if settings.PREPEND_WWW is True:
             return None
