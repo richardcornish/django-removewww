@@ -18,7 +18,7 @@ class RemoveWwwMiddleware(MiddlewareMixin):
     """
 
     def process_request(self, request):
-        if settings.PREPEND_WWW is True:
+        if settings.PREPEND_WWW:
             return None
         else:
             remove_www = getattr(settings, 'REMOVE_WWW', False)
