@@ -1,12 +1,13 @@
 from __future__ import unicode_literals
 
-from django.conf import settings
 from django.http import HttpResponsePermanentRedirect
 
 try:
     from django.utils.deprecation import MiddlewareMixin
 except ImportError:  # < Django 1.10
     MiddlewareMixin = object
+
+from . import settings
 
 
 class RemoveWwwMiddleware(MiddlewareMixin):
@@ -21,7 +22,7 @@ class RemoveWwwMiddleware(MiddlewareMixin):
         if settings.PREPEND_WWW:
             return None
         else:
-            remove_www = getattr(settings, 'REMOVE_WWW', False)
+            remove_www = settings.REMOVE_WWW
             host = request.get_host()
             if remove_www and host and host.startswith('www.'):
                 redirect_url = request.build_absolute_uri().replace('//www.', '//')
