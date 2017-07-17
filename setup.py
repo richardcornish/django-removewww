@@ -5,7 +5,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='django-removewww',
-    version='0.1.1',
+    version='0.1.2',
     description='A Django middleware application that removes the WWW subdomain',
     long_description=open(os.path.join(os.path.dirname(__file__), 'README.rst')).read(),
     author='Richard Cornish',
