@@ -18,9 +18,7 @@ class RemoveWwwMiddleware(MiddlewareMixin):
     """
 
     def process_request(self, request):
-        if settings.PREPEND_WWW:
-            return None
-        else:
+        if not settings.PREPEND_WWW:
             remove_www = getattr(settings, 'REMOVE_WWW', False)
             host = request.get_host()
             if remove_www and host and host.startswith('www.'):
